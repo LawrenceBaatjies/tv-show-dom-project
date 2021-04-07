@@ -6,16 +6,34 @@
     <title>TV Show Project | Lawrence(LawrenceBaatjies)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css>">
   </head>
 
   <body>
+    <div class="container header">
+      <!-- <img class="img1" src="https://www.logolynx.com/images/logolynx/1c/1c125bfb92304b8211d00d66527830f8.jpeg"><br> -->
+     
+      <hr>
+    </div> 
     <div id="root">
-    </div>
+    
+      <header id="header">Tv Show Project</header>
+      <!-- <a href="#" class="header-btn1">Login ||</a>
+      <a href="#" class="header-btn2">Sign Up</a>  -->
+
+      <navbar id="nav">
+        <select name="select" id="selectBox"> </select>
+        <input type="text" id="search" placeholder="Search for an episode.." />
+  
+        <div id="display"></div>
+      </navbar>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
+   
 
     <!-- Loads YOUR javascript code -->
+    <footer class="end-page" >All information obtained from <a href="https://tvmaze.com/" target="_blank">TvMaze.com</a></footer>
     <script src="script.js"></script>
   </body>
 </html>
