@@ -13,7 +13,8 @@
 // };
 //   window.onload = setup;
 // ####################################################################################################################################
-
+let episodeFrames = document.getElementById('episodeFrames');
+  let searchBar = document.getElementById('searchBar');
 let allEpisodes = getAllEpisodes();
 let episodeCode = "";
 
@@ -52,10 +53,57 @@ function display(allEpisodes) {
     episodeDiv.appendChild(episodeImg);
     episodeImg.className = "episodeImg";
 
-    var summary = document.createElement('p');
+    let summary = document.createElement('p');
     summary.innerHTML = allEpisodes.summary;
     episodeDiv.appendChild(summary);
     summary.className = "summary";
   
   }
 
+  let searchResults = document.getElementById('searchResults');
+
+  searchBar.addEventListener('keyup', function(e){
+    let searchTerm = e.target.value.toLowerCase();
+  
+    let filteredEpisodes = allEpisodes.filter((episode) => {
+  
+      return (
+        episode.name.toLowerCase().includes(searchTerm) ||
+        episode.summary.toLowerCase().includes(searchTerm)
+      );
+  
+    });
+  
+    displayCharacters(filteredEpisodes);
+  
+  });
+
+    const displayCharacters = (episodes) => {
+
+    const htmlString = episodes.map((episodes) => {
+  
+        if (episodes.number <= 9 && episodes.season <= 9) {
+          episodeCode = `S0${episodes.season}E0${episodes.number}`;
+        } else if (episodes.number <= 9 && episodes.season > 9) {
+          episodeCode = `S${episodes.season}0E${episodes.number}`;
+        } else if (episodes.number > 9 && episodes.season <= 9) {
+          episodeCode = `S0${episodes.season}E${episodes.number}`;
+        } else if (episodes.number > 9 && episodes.season > 9) {
+          episodeCode = `S${episodes.season}E${episodes.number}`;
+        } 
+  
+        return `
+              <div class="character">
+                  <h2>${episodes.name} ${episodeCode}</h2>
+                  <p> ${episodes.summary}</p>
+                  <img src="${episodes.image.medium}"></img>
+              </div>
+          `;
+      });
+     
+  
+    searchResults.innerHTML = `Displaying ${htmlString.length} of 73`;
+    episodeFrames.innerHTML = htmlString;
+    
+
+    }
